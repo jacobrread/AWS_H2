@@ -5,6 +5,7 @@ import time
 import json
 import os
 import sys
+import logging
 
 s3 = boto3.resource('s3')
 client = boto3.client("s3")
@@ -12,6 +13,7 @@ bucket2Name = 'jread-bucket-2'
 bucket3Name = 'jread-bucket-3'
 bucket2 = s3.Bucket(bucket2Name)
 dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+logging.basicConfig(filename="logfilename.log", level=logging.INFO)
 
 
 def getSmallestKey(bucket):
@@ -22,12 +24,15 @@ def getSmallestKey(bucket):
           desiredKey = object.key
 
   if (desiredKey == "99999999999999999"):
-      return None, None
+    logging.info('No objects in bucket 2')
+    return None, None
   else:
+    logging.info('Found the smallest key in bucket 2')
     return desiredKey, ''.join([desiredKey, ".json"])
 
 
 def getRequest(useS3):
+  logging.info("Received correct command line arugments")
   gotRequest = False
   while not gotRequest:
     smallestKey, fileName = getSmallestKey(bucket2)
@@ -65,6 +70,7 @@ def getRequest(useS3):
 
 
 def flattenDictionary(dictionary):
+  logging.info('Flattening dictionary')
   flattenedDictionary = {}
   print("Dictionary: ", dictionary['otherAttributes'])
   print()
@@ -91,22 +97,28 @@ def flattenDictionary(dictionary):
 
 
 def createRequest(widgetDictionaryObject, useS3):
-  # try:
+  logging.info('Began widget creation request')
+
+  try:
     # Check json for all required fields
     if (widgetDictionaryObject['owner'] == ""):
       print("Owner field is empty")
+      logging.info('Owner field in the json is empty')
       return
 
     if (widgetDictionaryObject['widgetId'] == ""):
       print("widgetID field is empty")
+      logging.info('widgetID field in the json is empty')
       return
 
     if (useS3): # Store in S3
+      logging.info('Storing widget in S3')
       # widgets/{owner}/{widget id}
       newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
       print("New name format: " + newNameFormat)
       s3.Object(bucket3Name, newNameFormat).put()
     else: # Store in dynamodb
+      logging.info('Storing widget in DynamoDB')
       table = dynamo.Table('dynamodb_table')
 
       print("Fix the code to flatten the dictionary")
@@ -116,15 +128,18 @@ def createRequest(widgetDictionaryObject, useS3):
       # print("I am about to put the item in the table")
       # table.put_item(Item=flattenedDictionary)
 
-  # except:
-  #   print("There was an error creating the request")
+  except:
+    logging.info('Error in createRequest caught by the try except block')
+    print("There was an error creating the request")
 
 
 def deleteRequest():
+  logging.info('Began widget delete request')
   print("Write the code fore deleting requests")
 
 
 def changeRequest():
+  logging.info('Began widget change request')
   print("Write the code fore changing requests")
 
 
