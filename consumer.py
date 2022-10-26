@@ -1,9 +1,6 @@
-from collections.abc import MutableMapping
-import collections.abc
 import boto3
 import time
 import json
-import os
 import sys
 import logging
 
@@ -16,32 +13,44 @@ dynamo = boto3.resource('dynamodb', region_name='us-east-1')
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 
 
-def getSmallestKey(bucket):
-  # Get the smallest key in bucket 2
-  desiredKey = "99999999999999999"
+def getAllKeys(bucket):
+  keys = []
   for object in bucket.objects.all():
-      if (object.key < desiredKey):
-          desiredKey = object.key
+    keys.append(object.key)
 
-  if (desiredKey == "99999999999999999"):
+  return keys
+
+def getSmallestKey(keys):
+  desiredKey = "99999999999999999"
+  for key in keys:
+    if (key < desiredKey):
+      desiredKey = key
+
+  if (key == "99999999999999999"):
     logging.info('No objects in bucket 2')
     return None, None
   else:
     logging.info('Getting the object from bucket 2 with key: ' + desiredKey)
-    return desiredKey, ''.join([desiredKey, ".json"])
+    keys.remove(desiredKey)
+    return desiredKey, keys, ''.join([desiredKey, ".json"])
 
 
 def getRequest(useS3):
   logging.info("Received correct command line arugments")
   gotRequest = False
   while not gotRequest:
-    smallestKey, fileName = getSmallestKey(bucket2)
+    keys = getAllKeys(bucket2)
+    # TODO: figure out how to get all the keys in the bucket and then stop the loop
+    smallestKey, keys, fileName = getSmallestKey(keys)
+    print(keys.count)
 
     # Check if there is an object in bucket 2
     if (fileName == None):
       print("No objects in bucket 2")
       time.sleep(0.1)
       continue
+    elif (keys.count == 0):
+      gotRequest = True
     else:
       gotRequest = True
 
@@ -72,16 +81,10 @@ def getRequest(useS3):
 
 def flattenDictionary(dictionary):
   logging.info('Flattening dictionary')
-  flattenedDictionary = {}
-  subDictionary = {}
-  print("Dictionary: ", dictionary)
-  print()
-  print("Other Attributes: ", dictionary['otherAttributes'])
-  print()
 
+  flattenedDictionary = {}
   for key in dictionary:
     flattenedDictionary[key] = dictionary[key]
-
 
     # print("Key: ", key)
     # print("Value: ", dictionary[key][0])
@@ -91,14 +94,6 @@ def flattenDictionary(dictionary):
     #   flattenedDictionary[key] = dictionary[key]
 
   return flattenedDictionary
-    # items = []
-    # for key, value in dictionary.items(): 
-    #   new_key = key
-    #   if isinstance(value, MutableMapping):
-    #     items.extend(flattenDictionary(value).items())
-    #   else:
-    #     items.append((new_key, value))
-    # return dict(items)
 
 
 def createRequest(widgetDictionaryObject, useS3):
@@ -117,16 +112,13 @@ def createRequest(widgetDictionaryObject, useS3):
       return
 
     if (useS3):
-      logging.info('Storing widget in S3')
       # widgets/{owner}/{widget id}
       newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
       print("New name format: " + newNameFormat)
       s3.Object(bucket3Name, newNameFormat).put()
       logging.info('Put widget in S3')
     else:
-      logging.info('Storing widget in DynamoDB')
       table = dynamo.Table('dynamo_table')
-      
       flattenedDictionary = flattenDictionary(widgetDictionaryObject)
       table.put_item(Item=flattenedDictionary)
       print("I put the item in the table")
@@ -139,12 +131,12 @@ def createRequest(widgetDictionaryObject, useS3):
 
 def deleteRequest():
   logging.info('Began widget delete request')
-  print("Write the code fore deleting requests")
+  print("Write the code for deleting requests")
 
 
 def changeRequest():
   logging.info('Began widget change request')
-  print("Write the code fore changing requests")
+  print("Write the code for changing requests")
 
 
 def main():
