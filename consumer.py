@@ -13,7 +13,7 @@ bucket2Name = 'jread-bucket-2'
 bucket3Name = 'jread-bucket-3'
 bucket2 = s3.Bucket(bucket2Name)
 dynamo = boto3.resource('dynamodb', region_name='us-east-1')
-logging.basicConfig(filename="logfilename.log", level=logging.INFO)
+logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 
 
 def getSmallestKey(bucket):
@@ -27,7 +27,7 @@ def getSmallestKey(bucket):
     logging.info('No objects in bucket 2')
     return None, None
   else:
-    logging.info('Found the smallest key in bucket 2')
+    logging.info('Getting the object from bucket 2 with key: ' + desiredKey)
     return desiredKey, ''.join([desiredKey, ".json"])
 
 
@@ -50,6 +50,7 @@ def getRequest(useS3):
     # Download the object with the smallest key
     client.download_file(bucket2Name, smallestKey, fileLocation) 
     s3.Object(bucket2Name, smallestKey).delete() # delete the file from bucket 2
+    logging.info("Deleted object from bucket 2")
 
     # Convert json file to python dictoinary
     jsonFileReference = open(fileLocation)
@@ -72,18 +73,22 @@ def getRequest(useS3):
 def flattenDictionary(dictionary):
   logging.info('Flattening dictionary')
   flattenedDictionary = {}
-  print("Dictionary: ", dictionary['otherAttributes'])
+  subDictionary = {}
+  print("Dictionary: ", dictionary)
   print()
   print("Other Attributes: ", dictionary['otherAttributes'])
   print()
 
   for key in dictionary:
-    print("Key: ", key)
-    print("Value: ", dictionary[key][0])
-    if isinstance(dictionary[key][0], collections.abc.Sequence):
-      flattenDictionary(dictionary[key])
-    else:
-      flattenedDictionary[key] = dictionary[key]
+    flattenedDictionary[key] = dictionary[key]
+
+
+    # print("Key: ", key)
+    # print("Value: ", dictionary[key][0])
+    # if isinstance(dictionary[key][0], collections.abc.Sequence):
+    #   flattenDictionary(dictionary[key])
+    # else:
+    #   flattenedDictionary[key] = dictionary[key]
 
   return flattenedDictionary
     # items = []
@@ -111,22 +116,21 @@ def createRequest(widgetDictionaryObject, useS3):
       logging.info('widgetID field in the json is empty')
       return
 
-    if (useS3): # Store in S3
+    if (useS3):
       logging.info('Storing widget in S3')
       # widgets/{owner}/{widget id}
       newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
       print("New name format: " + newNameFormat)
       s3.Object(bucket3Name, newNameFormat).put()
-    else: # Store in dynamodb
+      logging.info('Put widget in S3')
+    else:
       logging.info('Storing widget in DynamoDB')
-      table = dynamo.Table('dynamodb_table')
-
-      print("Fix the code to flatten the dictionary")
-      # flattenedDictionary = flattenDictionary(widgetDictionaryObject)
-      # print("I flattened the dictionary: \n", str(flattenedDictionary))
-      # print()
-      # print("I am about to put the item in the table")
-      # table.put_item(Item=flattenedDictionary)
+      table = dynamo.Table('dynamo_table')
+      
+      flattenedDictionary = flattenDictionary(widgetDictionaryObject)
+      table.put_item(Item=flattenedDictionary)
+      print("I put the item in the table")
+      logging.info('Put widget in DynamoDB table')
 
   except:
     logging.info('Error in createRequest caught by the try except block')
