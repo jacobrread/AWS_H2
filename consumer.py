@@ -1,15 +1,22 @@
-import boto3
 import time
 import json
 import sys
 import logging
+import delete
+import change
+import create
+import boto3
 
-s3 = boto3.resource('s3')
-client = boto3.client("s3")
-bucket2Name = 'jread-bucket-2'
-bucket3Name = 'jread-bucket-3'
-bucket2 = s3.Bucket(bucket2Name)
-dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+class AWS:
+  def __init__(self):
+    self.s3 = boto3.resource('s3')
+    self.client = boto3.client("s3")
+    self.bucket2Name = 'jread-bucket-2'
+    self.bucket3Name = 'jread-bucket-3'
+    self.bucket2 = self.s3.Bucket(self.bucket2Name)
+    self.dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+
+aws = AWS()
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 
 
@@ -19,6 +26,7 @@ def getAllKeys(bucket):
     keys.append(object.key)
 
   return keys
+
 
 def getSmallestKey(keys):
   desiredKey = "99999999999999999"
@@ -30,17 +38,18 @@ def getSmallestKey(keys):
     logging.info('No objects in bucket 2')
     return None, None
   else:
-    logging.info('Getting the object from bucket 2 with key: ' + desiredKey)
+    logging.info('Getting the object with key: ' + desiredKey)
     keys.remove(desiredKey)
     return desiredKey, keys, ''.join([desiredKey, ".json"])
 
 
 def getRequest(useS3):
   logging.info("Received correct command line arugments")
+
+  # TODO: figure out how to get all the keys in the bucket and then stop the loop
   gotRequest = False
   while not gotRequest:
-    keys = getAllKeys(bucket2)
-    # TODO: figure out how to get all the keys in the bucket and then stop the loop
+    keys = getAllKeys(aws.bucket2)
     smallestKey, keys, fileName = getSmallestKey(keys)
     print(keys.count)
 
@@ -57,8 +66,8 @@ def getRequest(useS3):
     fileLocation = "./jsonFileName/" + fileName
     
     # Download the object with the smallest key
-    client.download_file(bucket2Name, smallestKey, fileLocation) 
-    s3.Object(bucket2Name, smallestKey).delete() # delete the file from bucket 2
+    aws.client.download_file(aws.client, smallestKey, fileLocation) 
+    aws.s3.Object(aws.bucket2Name, smallestKey).delete() # delete the file from bucket 2
     logging.info("Deleted object from bucket 2")
 
     # Convert json file to python dictoinary
@@ -68,13 +77,13 @@ def getRequest(useS3):
     # Process the request
     if (widgetDictionaryObject['type'] == 'create'):
       print("Create request")
-      createRequest(widgetDictionaryObject, useS3)
+      create.createRequest(widgetDictionaryObject, aws, useS3)
     elif (widgetDictionaryObject['type'] == 'delete'):
       print("Delete request")
-      deleteRequest()
+      delete.deleteRequest(aws)
     elif (widgetDictionaryObject['type'] == 'update'):
       print("Change request")
-      changeRequest()
+      change.changeRequest(aws)
     else:
       print("Invalid request type: ", widgetDictionaryObject['type'])
 
@@ -86,57 +95,14 @@ def flattenDictionary(dictionary):
   for key in dictionary:
     flattenedDictionary[key] = dictionary[key]
 
-    # print("Key: ", key)
-    # print("Value: ", dictionary[key][0])
-    # if isinstance(dictionary[key][0], collections.abc.Sequence):
-    #   flattenDictionary(dictionary[key])
-    # else:
-    #   flattenedDictionary[key] = dictionary[key]
+  # print("Key: ", key)
+  # print("Value: ", dictionary[key][0])
+  # if isinstance(dictionary[key][0], collections.abc.Sequence):
+  #   flattenDictionary(dictionary[key])
+  # else:
+  #   flattenedDictionary[key] = dictionary[key]
 
   return flattenedDictionary
-
-
-def createRequest(widgetDictionaryObject, useS3):
-  logging.info('Began widget creation request')
-
-  try:
-    # Check json for all required fields
-    if (widgetDictionaryObject['owner'] == ""):
-      print("Owner field is empty")
-      logging.info('Owner field in the json is empty')
-      return
-
-    if (widgetDictionaryObject['widgetId'] == ""):
-      print("widgetID field is empty")
-      logging.info('widgetID field in the json is empty')
-      return
-
-    if (useS3):
-      # widgets/{owner}/{widget id}
-      newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
-      print("New name format: " + newNameFormat)
-      s3.Object(bucket3Name, newNameFormat).put()
-      logging.info('Put widget in S3')
-    else:
-      table = dynamo.Table('dynamo_table')
-      flattenedDictionary = flattenDictionary(widgetDictionaryObject)
-      table.put_item(Item=flattenedDictionary)
-      print("I put the item in the table")
-      logging.info('Put widget in DynamoDB table')
-
-  except:
-    logging.info('Error in createRequest caught by the try except block')
-    print("There was an error creating the request")
-
-
-def deleteRequest():
-  logging.info('Began widget delete request')
-  print("Write the code for deleting requests")
-
-
-def changeRequest():
-  logging.info('Began widget change request')
-  print("Write the code for changing requests")
 
 
 def main():
