@@ -37,22 +37,17 @@ def getSmallestKey(keys):
 
 def getRequest(useS3):
   logging.info("Received correct command line arugments")
-  gotRequest = False
-  while not gotRequest:
-    keys = getAllKeys(bucket2)
-    # TODO: figure out how to get all the keys in the bucket and then stop the loop
+  keys = getAllKeys(bucket2)
+
+  counter = 0
+  for i in range(len(keys)):
     smallestKey, keys, fileName = getSmallestKey(keys)
-    print(keys.count)
 
     # Check if there is an object in bucket 2
     if (fileName == None):
       print("No objects in bucket 2")
       time.sleep(0.1)
       continue
-    elif (keys.count == 0):
-      gotRequest = True
-    else:
-      gotRequest = True
 
     fileLocation = "./jsonFileName/" + fileName
     
@@ -77,6 +72,10 @@ def getRequest(useS3):
       changeRequest()
     else:
       print("Invalid request type: ", widgetDictionaryObject['type'])
+
+    counter += 1
+
+  print("Counter length: ", counter)
 
 
 def flattenDictionary(dictionary):
@@ -114,14 +113,12 @@ def createRequest(widgetDictionaryObject, useS3):
     if (useS3):
       # widgets/{owner}/{widget id}
       newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
-      print("New name format: " + newNameFormat)
       s3.Object(bucket3Name, newNameFormat).put()
       logging.info('Put widget in S3')
     else:
       table = dynamo.Table('dynamo_table')
       flattenedDictionary = flattenDictionary(widgetDictionaryObject)
       table.put_item(Item=flattenedDictionary)
-      print("I put the item in the table")
       logging.info('Put widget in DynamoDB table')
 
   except:
@@ -140,23 +137,27 @@ def changeRequest():
 
 
 def main():
-  if (len(sys.argv) == 1):
-    print("Defaulting to s3")
-    getRequest(True)
-  elif (len(sys.argv) == 2):
-    if (sys.argv[1] == "s3"):
-      print("Using S3")
+  try: 
+    if (len(sys.argv) == 1):
+      print("Defaulting to s3")
       getRequest(True)
-    elif (sys.argv[1] == "dynamodb"):
-      print("Using DynamoDB")
-      getRequest(False)
+    elif (len(sys.argv) == 2):
+      if (sys.argv[1] == "s3"):
+        print("Using S3")
+        getRequest(True)
+      elif (sys.argv[1] == "dynamodb"):
+        print("Using DynamoDB")
+        getRequest(False)
+      else:
+        print("To store using S3, use the command: python3 consumer.py s3")
+        print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
+        sys.exit()
     else:
       print("To store using S3, use the command: python3 consumer.py s3")
       print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
       sys.exit()
-  else:
-    print("To store using S3, use the command: python3 consumer.py s3")
-    print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
-    sys.exit()
+
+  except:
+    print("There was an error processing the widget request")
 
 main()
