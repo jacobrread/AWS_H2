@@ -1,4 +1,5 @@
 import logging
+import consumer
 
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 
@@ -25,7 +26,7 @@ def createRequest(widgetDictionaryObject, aws, useS3):
       logging.info('Put widget in S3')
     else:
       table = aws.dynamo.Table('dynamo_table')
-      flattenedDictionary = aws.flattenDictionary(widgetDictionaryObject)
+      flattenedDictionary = consumer.flattenDictionary(widgetDictionaryObject)
       table.put_item(Item=flattenedDictionary)
       print("I put the item in the table")
       logging.info('Put widget in DynamoDB table')
@@ -33,4 +34,12 @@ def createRequest(widgetDictionaryObject, aws, useS3):
   except:
     logging.info('Error in createRequest caught by the try except block')
     print("There was an error creating the request")
+
+def deleteRequest(aws):
+  logging.info('Began widget delete request')
+  print("Write the code for deleting requests")
+
+def changeRequest(aws):
+  logging.info('Began widget change request')
+  print("Write the code for changing requests")
 

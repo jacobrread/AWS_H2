@@ -2,9 +2,7 @@ import time
 import json
 import sys
 import logging
-import delete
-import change
-import create
+import requests
 import boto3
 
 class AWS:
@@ -77,13 +75,13 @@ def getRequest(useS3):
     # Process the request
     if (widgetDictionaryObject['type'] == 'create'):
       print("Create request")
-      create.createRequest(widgetDictionaryObject, aws, useS3)
+      requests.createRequest(widgetDictionaryObject, aws, useS3)
     elif (widgetDictionaryObject['type'] == 'delete'):
       print("Delete request")
-      delete.deleteRequest(aws)
+      requests.deleteRequest(aws)
     elif (widgetDictionaryObject['type'] == 'update'):
       print("Change request")
-      change.changeRequest(aws)
+      requests.changeRequest(aws)
     else:
       print("Invalid request type: ", widgetDictionaryObject['type'])
 
