@@ -37,46 +37,53 @@ def getSmallestKey(keys):
 
 def getRequest(useS3):
   logging.info("Received correct command line arugments")
-  gotRequest = False
-  while not gotRequest:
-    keys = getAllKeys(bucket2)
-    # TODO: figure out how to get all the keys in the bucket and then stop the loop
-    smallestKey, keys, fileName = getSmallestKey(keys)
-    print(keys.count)
+  keys = getAllKeys(bucket2)
 
-    # Check if there is an object in bucket 2
-    if (fileName == None):
-      print("No objects in bucket 2")
-      time.sleep(0.1)
-      continue
-    elif (keys.count == 0):
-      gotRequest = True
-    else:
-      gotRequest = True
+  for i in range(len(keys)):
+    try:
+      smallestKey, keys, fileName = getSmallestKey(keys)
 
-    fileLocation = "./jsonFileName/" + fileName
+      # Check if there is an object in bucket 2
+      if (fileName == None):
+        print("No objects in bucket 2")
+        time.sleep(0.1)
+        continue
+      elif (keys.count == 0):
+        gotRequest = True
+      else:
+        gotRequest = True
+
+      fileLocation = "./jsonFileName/" + fileName
+      
+      # Download the object with the smallest key
+      client.download_file(bucket2Name, smallestKey, fileLocation) 
+      s3.Object(bucket2Name, smallestKey).delete() # delete the file from bucket 2
+      logging.info("Deleted object from bucket 2")
+
+      # Convert json file to python dictoinary
+      jsonFileReference = open(fileLocation)
+      widgetDictionaryObject = json.load(jsonFileReference)
+
+      # Process the request
+      if (widgetDictionaryObject['type'] == 'create'):
+        print("Create request")
+        createRequest(widgetDictionaryObject, useS3)
+      elif (widgetDictionaryObject['type'] == 'delete'):
+        print("Delete request")
+        deleteRequest()
+      elif (widgetDictionaryObject['type'] == 'update'):
+        print("Change request")
+        changeRequest()
+      else:
+        print("Invalid request type: ", widgetDictionaryObject['type'])
     
-    # Download the object with the smallest key
-    client.download_file(bucket2Name, smallestKey, fileLocation) 
-    s3.Object(bucket2Name, smallestKey).delete() # delete the file from bucket 2
-    logging.info("Deleted object from bucket 2")
+    except Exception as e:
+      logging.info("Error caught in the try except block")
+      print("Error: ", e)
+      continue
 
-    # Convert json file to python dictoinary
-    jsonFileReference = open(fileLocation)
-    widgetDictionaryObject = json.load(jsonFileReference)
-
-    # Process the request
-    if (widgetDictionaryObject['type'] == 'create'):
-      print("Create request")
-      createRequest(widgetDictionaryObject, useS3)
-    elif (widgetDictionaryObject['type'] == 'delete'):
-      print("Delete request")
-      deleteRequest()
-    elif (widgetDictionaryObject['type'] == 'update'):
-      print("Change request")
-      changeRequest()
-    else:
-      print("Invalid request type: ", widgetDictionaryObject['type'])
+  print("Finished processing all requests in the buket")
+  logging.info("Finished processing all requests in the bucket")
 
 
 def flattenDictionary(dictionary):
