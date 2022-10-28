@@ -48,10 +48,6 @@ def getRequest(useS3):
         print("No objects in bucket 2")
         time.sleep(0.1)
         continue
-      elif (keys.count == 0):
-        gotRequest = True
-      else:
-        gotRequest = True
 
       fileLocation = "./jsonFileName/" + fileName
       
@@ -102,6 +98,9 @@ def flattenDictionary(dictionary):
 
   return flattenedDictionary
 
+###################################
+# Widget request functions
+###################################
 
 def createRequest(widgetDictionaryObject, useS3):
   logging.info('Began widget creation request')
@@ -166,4 +165,5 @@ def main():
     print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
     sys.exit()
 
-main()
+if __name__ == "__main__":
+  main()
