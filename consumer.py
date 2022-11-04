@@ -3,45 +3,85 @@ import time
 import json
 import sys
 import logging
+from utils import *
 
 s3 = boto3.resource('s3')
 client = boto3.client("s3")
+sqs = boto3.client('sqs', region_name='us-east-1')
+dynamo = boto3.resource('dynamodb', region_name='us-east-1')
 bucket2Name = 'jread-bucket-2'
 bucket3Name = 'jread-bucket-3'
 bucket2 = s3.Bucket(bucket2Name)
-dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+queue_url = "https://sqs.us-east-1.amazonaws.com/009923585255/cs5260-requests"
+
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 
+class Message:
+  def __init__(self, message, receipt_handle):
+    self.message = message
+    self.receipt_handle = receipt_handle
 
-def getAllKeys(bucket):
-  keys = []
-  for object in bucket.objects.all():
-    keys.append(object.key)
 
-  return keys
-
-def getSmallestKey(keys):
-  desiredKey = "99999999999999999"
-  for key in keys:
-    if (key < desiredKey):
-      desiredKey = key
-
-  if (key == "99999999999999999"):
-    logging.info('No objects in bucket 2')
-    return None, None
+def storage(useS3):
+  if (useS3):
+    return "s3"
   else:
-    logging.info('Getting the object from bucket 2 with key: ' + desiredKey)
-    keys.remove(desiredKey)
-    return desiredKey, keys, ''.join([desiredKey, ".json"])
+    return "dynamo"
 
 
-def getRequest(useS3):
-  logging.info("Received correct command line arugments")
-  keys = getAllKeys(bucket2)
+def retrieval(param):
+  if (param == "sqs"):
+    response = sqs.receive_message(
+      QueueUrl = queue_url,
+      AttributeNames = [
+          'SentTimestamp'
+      ],
+      MaxNumberOfMessages = 10,
+      MessageAttributeNames = [
+          'All'
+      ],
+      VisibilityTimeout = 0,
+      WaitTimeSeconds = 0
+    )
 
-  for i in range(len(keys)):
+    # print("Response length: ", len(response))
+    # print()
+    # print(response)
+    # print()
+
+    message = response['Messages'][0]
+    receipt_handle = message['ReceiptHandle']
+
+    # Delete received message from queue
+    sqs.delete_message(
+        QueueUrl=queue_url,
+        ReceiptHandle=receipt_handle
+    )
+
+    messageBody = json.loads(message['Body'])
+
+    return Message(messageBody, receipt_handle)
+  
+  else:
+    keys = getAllKeys(bucket2)
+
+    return keys
+
+
+def getRequest(storageDestination, retrievalLocation):
+  logging.info("Received correct command line arguments")
+
+  widgets = retrieval(retrievalLocation)
+  return
+
+  if (storageDestination == "s3"):
+    useS3 = True
+  else:
+    useS3 = False
+
+  for i in range(len(widgets)):
     try:
-      smallestKey, keys, fileName = getSmallestKey(keys)
+      smallestKey, keys, fileName = getSmallestKey(widgets)
 
       # Check if there is an object in bucket 2
       if (fileName == None):
@@ -56,7 +96,7 @@ def getRequest(useS3):
       s3.Object(bucket2Name, smallestKey).delete() # delete the file from bucket 2
       logging.info("Deleted object from bucket 2")
 
-      # Convert json file to python dictoinary
+      # Convert json file to python dictionary
       jsonFileReference = open(fileLocation)
       widgetDictionaryObject = json.load(jsonFileReference)
 
@@ -78,25 +118,9 @@ def getRequest(useS3):
       print("Error: ", e)
       continue
 
-  print("Finished processing all requests in the buket")
+  print("Finished processing all requests in the bucket")
   logging.info("Finished processing all requests in the bucket")
 
-
-def flattenDictionary(dictionary):
-  logging.info('Flattening dictionary')
-
-  flattenedDictionary = {}
-  for key in dictionary:
-    flattenedDictionary[key] = dictionary[key]
-
-    # print("Key: ", key)
-    # print("Value: ", dictionary[key][0])
-    # if isinstance(dictionary[key][0], collections.abc.Sequence):
-    #   flattenDictionary(dictionary[key])
-    # else:
-    #   flattenedDictionary[key] = dictionary[key]
-
-  return flattenedDictionary
 
 ###################################
 # Widget request functions
@@ -146,24 +170,23 @@ def changeRequest():
 
 
 def main():
-  if (len(sys.argv) == 1):
-    print("Defaulting to s3")
-    getRequest(True)
-  elif (len(sys.argv) == 2):
-    if (sys.argv[1] == "s3"):
-      print("Using S3")
-      getRequest(True)
-    elif (sys.argv[1] == "dynamodb"):
-      print("Using DynamoDB")
-      getRequest(False)
+  if (len(sys.argv) == 3):
+    if (sys.argv[1] == "s3" or sys.argv[1] == "dynamodb"):
+      if (sys.argv[2] == "sqs" or sys.argv[2] == "bucket"):
+        getRequest(sys.argv[1], sys.argv[2])
+      else:
+        print("Invalid storage command line argument")
+        logging.info('Invalid storage command line argument')
     else:
-      print("To store using S3, use the command: python3 consumer.py s3")
-      print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
-      sys.exit()
+      print("Invalid retrieval command line argument")
+      logging.info('Invalid retrieval command line argument')
   else:
-    print("To store using S3, use the command: python3 consumer.py s3")
-    print("To store using DynamoDB, use the command: python3 consumer.py dynamodb")
+    print("To store using S3, use 's3' as your third argument")
+    print("To store using DynamoDB, use 'dynamodb' as your third argument")
+    print("To retrieve using SQS, use 'sqs' as your fourth argument")
+    print("To retrieve using bucket, use 'bucket' as your fourth argument")
     sys.exit()
+
 
 if __name__ == "__main__":
   main()
