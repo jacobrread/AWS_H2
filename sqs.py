@@ -1,5 +1,8 @@
 import boto3
 import logging
+import json
+from requests import createRequest, deleteRequest, updateRequest
+
 
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 sqs = boto3.client('sqs', region_name='us-east-1')
@@ -12,6 +15,23 @@ class Message:
     self.receipt_handle = receipt_handle
 
 
+def getNumberOfMessages():
+  response = sqs.get_queue_attributes(
+    QueueUrl=queue_url,
+    AttributeNames=['ApproximateNumberOfMessages']
+  )
+  numberOfWidgets = response['Attributes']['ApproximateNumberOfMessages']
+
+  return numberOfWidgets
+
+
+def deleteMessage(receipt_handle):
+  sqs.delete_message(
+    QueueUrl = queue_url,
+    ReceiptHandle = receipt_handle
+  )
+
+
 def getMessage():
   response = sqs.receive_message(
     QueueUrl = queue_url,
@@ -22,41 +42,43 @@ def getMessage():
     MessageAttributeNames = [
         'All'
     ],
-    VisibilityTimeout = 0,
+    VisibilityTimeout = 100000,
     WaitTimeSeconds = 0
   )
 
-  return response['Messages']
+  message = response['Messages'][0]
+  receipt_handle = message['ReceiptHandle']
+  deleteMessage(receipt_handle)
+  
+  return message
 
 
-def getNumberOfMessages():
-  response = sqs.get_queue_attributes(
-    QueueUrl=queue_url,
-    AttributeNames=['ApproximateNumberOfMessages']
-  )
-  numberOfWidgets = response['Attributes']['ApproximateNumberOfMessages']
-
-  # print("Number of widgets: " + str(numberOfWidgets))
-  return numberOfWidgets
-
-
-def deleteMessage(client, message, queue_url):
-  client.delete_message(
-    QueueUrl = queue_url,
-    ReceiptHandle = message['ReceiptHandle']
-  )
-
-
-def processRequest(storageDestination):
-  if (storageDestination == "s3"):
-    useS3 = True
-  else:
-    useS3 = False
-
+def processRequest(type):
+  logging.info("Retrieving widgets from SQS")
   numberOfMessages = getNumberOfMessages()
 
-  for i in range(numberOfMessages):
-    message = getMessage()
-    print(message)
+  for i in range(int(numberOfMessages)):
+    try: 
+      message = getMessage()
+      message = json.loads(message['Body'])
+      print(message)
       
- 
+      # Process the request
+      if (message['type'] == 'create'):
+        print("Create request")
+        createRequest(message, type)
+      elif (message['type'] == 'delete'):
+        print("Delete request")
+        deleteRequest(type, message)
+      elif (message['type'] == 'update'):
+        print("Update request")
+        updateRequest(type, message)
+      else:
+        print("Invalid request type: ", message['type'])
+    except Exception as e:
+      logging.info("Error caught in the try except block while processing the request in bucket 2")
+      print("Error: ", e)
+      continue
+
+  print("Finished processing all requests in the sqs")
+  logging.info("Finished processing all requests in the sqs")

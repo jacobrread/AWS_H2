@@ -17,7 +17,7 @@ def getRequest(storageDestination, retrievalLocation):
   else:
     logging.info("Retrieving widgets from SQS")
     print("Retrieving widgets from SQS")
-    sqs.processRequest(storageDestination, retrievalLocation)
+    sqs.processRequest(storageDestination)
       
   return
 

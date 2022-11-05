@@ -1,10 +1,12 @@
 import logging
 import boto3
 
+
 logging.basicConfig(filename="actionlog.log", level=logging.INFO)
 s3 = boto3.resource('s3')
 client = boto3.client("s3")
 dynamo = boto3.resource('dynamodb', region_name='us-east-1')
+table = dynamo.Table('dynamo_table')
 bucket3Name = 'jread-bucket-3'
 
 def flattenDictionary(dictionary):
@@ -14,17 +16,10 @@ def flattenDictionary(dictionary):
   for key in dictionary:
     flattenedDictionary[key] = dictionary[key]
 
-    # print("Key: ", key)
-    # print("Value: ", dictionary[key][0])
-    # if isinstance(dictionary[key][0], collections.abc.Sequence):
-    #   flattenDictionary(dictionary[key])
-    # else:
-    #   flattenedDictionary[key] = dictionary[key]
-
   return flattenedDictionary
 
 
-def createRequest(widgetDictionaryObject, useS3):
+def createRequest(widgetDictionaryObject, type):
   logging.info('Began widget creation request')
 
   try:
@@ -39,42 +34,47 @@ def createRequest(widgetDictionaryObject, useS3):
       logging.info('widgetID field in the json is empty')
       return
 
-    if (useS3):
+    if (type == "s3"):
       # widgets/{owner}/{widget id}
       newNameFormat = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
-      print("New name format: " + newNameFormat)
-      s3.Object(bucket3Name, newNameFormat).put()
+      s3.Object(bucket3Name, newNameFormat).put(Body=str(widgetDictionaryObject))
       logging.info('Put widget in S3')
     else:
       table = dynamo.Table('dynamo_table')
       flattenedDictionary = flattenDictionary(widgetDictionaryObject)
       table.put_item(Item=flattenedDictionary)
-      print("I put the item in the table")
       logging.info('Put widget in DynamoDB table')
 
-  except:
-    logging.info('Error in createRequest caught by the try except block')
-    print("There was an error creating the request")
+  except Exception as e:
+    logging.info("Error while creating item: ", e)
+    print(e)
+    raise
 
-
-def deleteRequest(type, widgetId):
+def deleteRequest(type, widgetDictionaryObject):
   logging.info('Began widget delete request')
 
-  if (type == "dynamodb"):
+  # Check json for all required fields
+  if (widgetDictionaryObject['widgetId'] == ""):
+    print("widgetID field is empty")
+    logging.info('widgetID field in the json is empty')
+    return
+
+  if (type == "dynamo"):
     try:
-      dynamo.delete_item(Key={'widgetId': widgetId})
+      table.delete_item(Key={'widgetId': widgetDictionaryObject['widgetId']})
 
     except Exception as e:
-      logging.info("Error while deleting item from dynamodb table")
+      logging.info("Error while deleting item from dynamodb table: ", e)
       print(e)
       raise
 
   elif (type == "s3"):
     try:
-      s3.Object(bucket3Name, widgetId).delete()
+      filePath = "widgets/" + widgetDictionaryObject['owner'].replace(" ", "-").lower() + "/" + widgetDictionaryObject['widgetId']
+      s3.Object(bucket3Name, filePath).delete()
 
     except Exception as e:
-      logging.info("Error while deleting item from s3 bucket")
+      logging.info("Error while deleting item from s3 bucket: ", e)
       print(e)
       raise
 
@@ -83,36 +83,49 @@ def deleteRequest(type, widgetId):
     print("Unrecognized type passed to deleteRequest")
 
 
-def updateRequest(type, widgetId, updateDictionary):
+def getUpdateParams(dictionary):
+  update_expression = ["set "]
+  update_values = dict()
+
+  for key, val in dictionary.items():
+    update_expression.append(f" {key} = :{key},")
+    update_values[f":{key}"] = val
+
+  return "".join(update_expression)[:-1], update_values
+
+
+def updateRequest(type, widgetDictionaryObject):
   logging.info('Began widget update request')
 
-  if (type == "dynamodb"):
-    return 
-
+  if (type == "dynamo"):
     try:
-      response = dynamo.update_item(
-        Key={'widgetId': widgetId},
-        UpdateExpression="set info.rating=:r, info.plot=:p",
-        ExpressionAttributeValues={
-            ':r': Decimal(str(rating)), ':p': plot},
-        ReturnValues="UPDATED_NEW")
+      widgetID = widgetDictionaryObject['widgetId']
+      del widgetDictionaryObject['type']
+      del widgetDictionaryObject['owner']
+      del widgetDictionaryObject['widgetId']
+      expression, values = getUpdateParams(widgetDictionaryObject)
 
+      response = table.update_item(
+        Key={'widgetId': widgetID},
+        UpdateExpression = expression,
+        ExpressionAttributeValues = values
+      )
+      
     except Exception as e:
-      logging.info("Error while updating item in dynamodb table")
+      logging.info("Error while updating item in dynamodb table: ", e)
       print(e)
       raise
 
     else:
       logging.info("Successfully updated item in dynamodb table")
-      return response['Attributes']
+      return response
 
   elif (type == "s3"):
     try:
-      # TODO: Change this to the actual update for s3
-      s3.Object(bucket3Name, widgetId).put(Body=updateDictionary)
+      createRequest(widgetDictionaryObject, True)
 
     except Exception as e:
-      logging.info("Error while updating item in s3 bucket")
+      logging.info("Error while updating item in s3 bucket: ", e)
       print(e)
       raise
 

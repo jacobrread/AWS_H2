@@ -39,9 +39,9 @@ def getSmallestKey(keys):
 # Main function
 def processRequest(storageDestination):
   if (storageDestination == "s3"):
-    useS3 = True
+    type = "s3"
   else:
-    useS3 = False
+    type = "dynamo"
 
   keys = getAllKeys(bucket2)
 
@@ -69,13 +69,13 @@ def processRequest(storageDestination):
       # Process the request
       if (widgetDictionaryObject['type'] == 'create'):
         print("Create request")
-        createRequest(widgetDictionaryObject, useS3)
+        createRequest(widgetDictionaryObject, type)
       elif (widgetDictionaryObject['type'] == 'delete'):
         print("Delete request")
-        deleteRequest()
+        deleteRequest(type, widgetDictionaryObject)
       elif (widgetDictionaryObject['type'] == 'update'):
-        print("Change request")
-        updateRequest()
+        print("Update request")
+        updateRequest(type, widgetDictionaryObject)
       else:
         print("Invalid request type: ", widgetDictionaryObject['type'])
     
