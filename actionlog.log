@@ -1,0 +1,634 @@
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369227
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Finished processing all requests in the sqs
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369451
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369713
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369907
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370099
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370344
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370542
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306370839
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306371037
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371375
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306371675
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371974
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372166
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306372496
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372686
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372894
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306373189
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373502
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373799
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374092
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374390
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306374392
+INFO:root:Deleted object from bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306374590
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306374890
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375082
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375135
+INFO:root:Deleted object from bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375282
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306375653
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375850
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375892
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375912
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306376056
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306376404
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306377574
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Finished processing all requests in the bucket
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Finished processing all requests in the sqs
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Finished processing all requests in the sqs
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Finished processing all requests in the sqs
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Deleting message from SQS
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Finished processing all requests in the sqs
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306369227
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306369451
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306369713
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306369907
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306370099
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306370344
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306370542
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306370839
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306371037
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371375
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306371675
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371974
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306372166
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306372496
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306372686
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306372894
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306373189
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373502
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373799
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374092
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374390
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306374392
+INFO:root:Deleted object from bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306374590
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306374890
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375082
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375135
+INFO:root:Deleted object from bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375282
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306375653
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369227
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369451
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369713
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369907
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370099
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370344
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370542
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306370839
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306371037
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371375
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306371675
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371974
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372166
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306372496
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372686
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372894
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306373189
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373502
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373799
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374092
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374390
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306374392
+INFO:root:Deleted object from bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306374590
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306374890
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375082
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375135
+INFO:root:Deleted object from bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375282
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306375653
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375850
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375892
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Widget does not have all required fields
+INFO:root:Getting the object from bucket 2 with key: 1612306375912
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306376056
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306376404
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306377574
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Finished processing all requests in the bucket
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369227
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369451
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369713
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306369907
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370099
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370344
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306370542
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306370839
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306371037
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371375
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306371675
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306371974
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372166
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306372496
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372686
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306372894
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306373189
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373502
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306373799
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374092
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306374390
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306374392
+INFO:root:Deleted object from bucket 2
+INFO:root:Error caught in the try except block while processing the request in bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306374590
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306374890
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375082
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375135
+INFO:root:Deleted object from bucket 2
+INFO:root:Getting the object from bucket 2 with key: 1612306375282
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306375653
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375850
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306375892
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Widget does not have all required fields
+INFO:root:Getting the object from bucket 2 with key: 1612306375912
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306376056
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Getting the object from bucket 2 with key: 1612306376404
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Getting the object from bucket 2 with key: 1612306377574
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget delete request
+INFO:root:Finished processing all requests in the bucket

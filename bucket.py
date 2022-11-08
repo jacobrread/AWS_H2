@@ -38,6 +38,8 @@ def getSmallestKey(keys):
 
 # Main function
 def processRequest(storageDestination):
+  logging.info("Retrieving widgets from s3 bucket")
+
   if (storageDestination == "s3"):
     type = "s3"
   else:

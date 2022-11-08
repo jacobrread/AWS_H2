@@ -1,6 +1,5 @@
 import sys
 import logging
-from utils import *
 import bucket
 import sqs
 

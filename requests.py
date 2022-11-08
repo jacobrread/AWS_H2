@@ -24,14 +24,20 @@ def createRequest(widgetDictionaryObject, type):
 
   try:
     # Check json for all required fields
-    if (widgetDictionaryObject['owner'] == ""):
-      print("Owner field is empty")
-      logging.info('Owner field in the json is empty')
-      return
+    hasOwner = False
+    hasWidgetId = False
+    for key in widgetDictionaryObject:
+      if (key == "owner"):
+        hasOwner = True
 
-    if (widgetDictionaryObject['widgetId'] == ""):
-      print("widgetID field is empty")
-      logging.info('widgetID field in the json is empty')
+      if (key == "widgetId"):
+        hasWidgetId = True
+    
+    if (hasOwner and hasWidgetId):
+      pass
+    else:
+      print("Widget does not have all required fields")
+      logging.info("Widget does not have all required fields")
       return
 
     if (type == "s3"):

@@ -9,12 +9,6 @@ sqs = boto3.client('sqs', region_name='us-east-1')
 queue_url = "https://sqs.us-east-1.amazonaws.com/009923585255/cs5260-requests"
 
 
-class Message:
-  def __init__(self, message, receipt_handle):
-    self.message = message
-    self.receipt_handle = receipt_handle
-
-
 def getNumberOfMessages():
   response = sqs.get_queue_attributes(
     QueueUrl=queue_url,
@@ -26,6 +20,7 @@ def getNumberOfMessages():
 
 
 def deleteMessage(receipt_handle):
+  logging.info("Deleting message from SQS")
   sqs.delete_message(
     QueueUrl = queue_url,
     ReceiptHandle = receipt_handle
@@ -42,7 +37,7 @@ def getMessage():
     MessageAttributeNames = [
         'All'
     ],
-    VisibilityTimeout = 100000,
+    VisibilityTimeout = 100,
     WaitTimeSeconds = 0
   )
 
@@ -61,7 +56,6 @@ def processRequest(type):
     try: 
       message = getMessage()
       message = json.loads(message['Body'])
-      print(message)
       
       # Process the request
       if (message['type'] == 'create'):
