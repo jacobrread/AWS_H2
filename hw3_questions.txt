@@ -1,0 +1,17 @@
+#1. Why is possible that Update and Delete Widget Requests may fail, even when you were 
+running just one Consumer? 
+
+If the dictionary is missing required fields, such as 'widgetId' or 'owner' then there will be errors in the code I wrote.
+
+In a more general sense there could be errors with syncing as a message might not be updated or removed before another request is submitted.
+As such there is a potential mix up where an update gets called on a message that is being deleted, or delete gets called on a message 
+being updated.
+
+
+
+#2. How would this possible behavior impact the design of distributed applications that use 
+queues? 
+
+If this was to happen there would be requests that failed which would result in unsatisfied users. Additionally, if the code was not written
+to account for this then the program could potentially crash. To help avoid this the code should both be robust and use a dead letter queue.
+
