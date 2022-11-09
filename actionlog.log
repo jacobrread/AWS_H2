@@ -632,3 +632,243 @@ INFO:root:Getting the object from bucket 2 with key: 1612306377574
 INFO:root:Deleted object from bucket 2
 INFO:root:Began widget delete request
 INFO:root:Finished processing all requests in the bucket
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from SQS
+INFO:root:Retrieving widgets from SQS
+INFO:root:Finished processing all requests in the sqs
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget update request
+INFO:root:Successfully updated item in dynamodb table
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget creation request
+INFO:root:Put widget in S3
+INFO:root:Began widget delete request
+INFO:root:Received correct command line arguments
+INFO:root:Retrieving widgets from Bucket
+INFO:root:Retrieving widgets from s3 bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
+INFO:root:Deleted object from bucket 2
+INFO:root:Began widget creation request
+INFO:root:Flattening dictionary
+INFO:root:Put widget in DynamoDB table
+INFO:root:Finished processing all requests in the bucket
+INFO:root:Getting the object from bucket 2 with key: 1612306368338
