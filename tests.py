@@ -3,6 +3,7 @@ import unittest
 import boto3
 import bucket
 import requests
+import lambda_function
 
 s3 = boto3.resource('s3')
 client = boto3.client("s3")
@@ -19,6 +20,7 @@ class TestConsumer(unittest.TestCase):
         smallestKey, keyList, filename = bucket.getSmallestKey(keys)
         self.assertEqual(smallestKey, "1612306368338")
 
+
     def test_getAllKeys(self):
         client.upload_file("sample-requests/1612306368338", bucket2Name, "1612306368338")
         client.upload_file("sample-requests/1612306369227", bucket2Name, "1612306369227")
@@ -34,12 +36,13 @@ class TestConsumer(unittest.TestCase):
         size = len(keys) == 3
         self.assertTrue(first and second and third and size)
 
+
     def test_getRequest(self):
         bucket2.objects.all().delete()
         bucket3.objects.filter(Prefix="widgets/").delete()
 
         client.upload_file("sample-requests/1612306368338", bucket2Name, "1612306368338")
-        getRequest(bucket2, None)
+        getRequest('s3', None)
         object = bucket.getAllKeys(bucket3)
 
         if (object == None or len(object) == 0):
@@ -47,6 +50,7 @@ class TestConsumer(unittest.TestCase):
         
         self.assertEqual(object[0], "widgets/mary-matthews/8123f304-f23f-440b-a6d3-80e979fa4cd6")
     
+
     def test_createRequest(self):
         bucket2.objects.all().delete()
         bucket3.objects.filter(Prefix="widgets/").delete()
@@ -62,6 +66,7 @@ class TestConsumer(unittest.TestCase):
 
         self.assertEqual(object[0], "widgets/mary-matthews/8123f304-f23f-440b-a6d3-80e979fa4cd6")
 
+    
     def test_deleteRequest(self):
         bucket2.objects.all().delete()
         bucket3.objects.filter(Prefix="widgets/").delete()
@@ -78,6 +83,7 @@ class TestConsumer(unittest.TestCase):
         keys = bucket.getAllKeys(bucket2)
         self.assertEqual(len(keys), 0)
 
+    
     def test_changeRequest(self):
         bucket2.objects.all().delete()
         bucket3.objects.filter(Prefix="widgets/").delete()
@@ -97,6 +103,40 @@ class TestConsumer(unittest.TestCase):
             self.assertEqual(type(response), dict)
         else:
             self.fail("Failed to update dynamodb table")
+
+    
+    def test_lambdaFunction(self):
+        event = {
+            "type": "create",
+            "requestId": "e80fab52-71a5-4a76-8c4d-11b66b83ca2a",
+            "widgetId": "8123f304-f23f-440b-a6d3-80e979fa4cd6",
+            "owner": "Mary Matthews",
+            "label": "JWJYY",
+            "description": "THBRNVNQPYAWNHGRGUKIOWCKXIVNDLWOIQTADHVEVMUAJWDONEPUEAXDITDSHJTDLCMHHSESFXSDZJCBLGIKKPUYAWKQAQI",
+            "otherAttributes": [
+                {
+                "name": "width-unit",
+                "value": "cm"
+                },
+                {
+                "name": "length-unit",
+                "value": "cm"
+                },
+                {
+                "name": "rating",
+                "value": "2.580677"
+                },
+                {
+                "name": "note",
+                "value": "FEGYXHIJCTYNUMNMGZBEIDLKXYFNHFLVDYZRNWUDQAKQSVFLPRJTTXARVEIFDOLTUSWZZWVERNWPPOEYSUFAKKAPAGUALGXNDOVPNKQQKYWWOUHGOJWKAJGUXXBXLWAKJCIVPJYRMRWMHRUVBGVILZRMESQQJRBLXISNFCXGGUFZCLYAVLRFMJFLTBOTLKQRLWXALLBINWALJEMUVPNJWWRWLTRIBIDEARTCSLZEDLZRCJGSMKUOZQUWDGLIVILTCXLFIJIULXIFGRCANQPITKQYAKTPBUJAMGYLSXMLVIOROSBSXTTRULFYPDFJSFOMCUGDOZCKEUIUMKMMIRKUEOMVLYJNJQSMVNRTNGH"
+                }
+            ]
+        }
+
+        response = lambda_function.lambda_handler(event, None)
+
+        if (response['statusCode'] == 200):
+            self.assertEqual(type(response), dict)
 
 
 if __name__ == '__main__':
